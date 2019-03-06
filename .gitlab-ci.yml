@@ -1,5 +1,6 @@
 before_script:
-  - pip install git+https://gitlab.com/pmarlow/ci_secrets#egg=ci_secrets
+  - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/pmarlow/ci_secrets /tmp/ci_secrets
+  - pip install -e /tmp/ci_secrets
 
 ci_secrets:
   image: python:stretch
