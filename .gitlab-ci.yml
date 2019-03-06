@@ -1,6 +1,6 @@
 before_script:
   - pip install git+https://gitlab.com/pmarlow/ci_secrets#egg=ci_secrets
-	
+
 ci_secrets:
   image: python:stretch
   script:
