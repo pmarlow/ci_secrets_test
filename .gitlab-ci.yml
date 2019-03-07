@@ -2,6 +2,18 @@ before_script:
   - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/pmarlow/ci_secrets /tmp/ci_secrets
   - pip install -e /tmp/ci_secrets
 
+print_merge:
+  script:
+    - echo $CI_MERGE_REQUEST_TARGET_BRANCH_SHA
+  only:
+    - merge_requests
+
+print_nonmerge:
+  script:
+    - echo $CI_COMMIT_BEFORE_SHA
+  except:
+    - merge_requests
+
 ci_secrets:
   image: python:stretch
   script:
