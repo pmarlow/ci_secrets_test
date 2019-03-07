@@ -23,6 +23,16 @@ ci_secrets:
     - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/pmarlow/ci_secrets /tmp/ci_secrets
     - pip install -e /tmp/ci_secrets
   script:
-    # Pass in SHA based on whether this is a merge or not"
-    - export SINCE_SHA="${CI_MERGE_REQUEST_TARGET_BRANCH_SHA:-$CI_COMMIT_BEFORE_SHA}"
-    - ci_secrets --since $SINCE_SHA
+    - ci_secrets --since $CI_COMMIT_BEFORE_SHA
+  except:
+    - merge_requests
+
+ci_secrets_merge:
+  image: python:stretch
+  before_script:
+    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/pmarlow/ci_secrets /tmp/ci_secrets
+    - pip install -e /tmp/ci_secrets
+  script:
+    - ci_secrets --since $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+  only:
+    - merge_requests
