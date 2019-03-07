@@ -1,6 +1,6 @@
 print_merge:
   script:
-    - echo $CI_MERGE_REQUEST_TARGET_BRANCH_SHA
+    - echo $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
   only:
     - merge_requests
 
