@@ -1,0 +1,8 @@
+language: python
+before_install:
+- echo -e "machine github.com\n  login $CI_USER_TOKEN" > ~/.netrc
+
+before_script:  
+    - git clone https://github.com/pmarlow/ci_secrets /tmp/ci_secrets
+    - pip install -e /tmp/ci_secrets
+script: ci_secrets --since $CI_COMMIT_BEFORE_SHA --log INFO
