@@ -1,15 +1,3 @@
-print_merge:
-  script:
-    - echo $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
-  only:
-    - merge_requests
-
-print_nonmerge:
-  script:
-    - echo $CI_COMMIT_BEFORE_SHA
-  except:
-    - merge_requests
-
 ci_secrets:
   image: python:stretch
   before_script:
