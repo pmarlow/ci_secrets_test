@@ -9,4 +9,4 @@ script:
     #If this is the first commit on a branch, use 0000000000000000000000000000000000000000 to match the behavior of GitLab CI.
     - export COMMIT_RANGE=${TRAVIS_COMMIT_RANGE:-"0000000000000000000000000000000000000000"}
     - export LAST_COMMIT=${COMMIT_RANGE%%.*}
-    - ci_secrets --since $LAST_COMMIT --log INFO
+    - ci_secrets --since $LAST_COMMIT --includesMergeCommit --log INFO
