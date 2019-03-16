@@ -14,6 +14,6 @@ ci_secrets_merge:
     - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/pmarlow/ci_secrets /tmp/ci_secrets
     - pip install -e /tmp/ci_secrets
   script:
-    - ci_secrets --since $CI_MERGE_REQUEST_TARGET_BRANCH_NAME --log INFO
+    - ci_secrets --since origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME --log INFO
   only:
     - merge_requests
